@@ -9,10 +9,11 @@ public class Main {
      */
     public static void main(String[] args) {
         OTPMAIL o = new OTPMAIL();
-        Connect c = new Connect("UsersData");
+        Connect c = new Connect("orders");
         //c.createNewTableItems();
         //c.insertInAuthTable("1", "Ziad", "Z-Etman", "engziad90@gmail.com", "11223344", "01144665704", "Egypt-Giza", "client");
-        c.selectAllFromAuthTable();
+        //c.deleteFromTable("o7");
+        c.selectAll();
     }
 
 

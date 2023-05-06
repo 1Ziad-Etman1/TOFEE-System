@@ -124,8 +124,19 @@ public class Connect {
 
     }
 
+    public void selectAll(){
+        if (table_name == "UsersData"){
+            selectAllFromAuthTable();
+        } else if (table_name == "Items") {
+            selectAllFromItemsTable();
+        } else if (table_name == "categories") {
+            selectAllFromCategoryTable();
+        } else if (table_name == "orders") {
+            selectAllFromOrdersTable();
+        }
+    }
 
-    public void selectAllFromAuthTable() {
+    private void selectAllFromAuthTable() {
         String sql = "SELECT * FROM " + table_name;
 
         try {
@@ -150,6 +161,158 @@ public class Connect {
             System.out.println(e.getMessage());
         }
     }
+
+    private void selectAllFromItemsTable() {
+        String sql = "SELECT * FROM " + table_name;
+
+        try {
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        rs.getString("id") + "\t" +
+                                rs.getString("name") + "\t" +
+                                rs.getString("categoryName") + "\t" +
+                                rs.getString("brand") + "\t" +
+                                rs.getFloat("price") + "\t" +
+                                rs.getString("seal_loose") + "\t" +
+                                rs.getFloat("discountPercentage") + "\t" +
+                                rs.getFloat("amountInStores") + "\t" +
+                                rs.getInt("loualPoints") + "\t" +
+                                rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void selectAllFromCategoryTable() {
+        String sql = "SELECT * FROM " + table_name;
+
+        try {
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        rs.getString("id") + "\t" +
+                                rs.getString("name") + "\t" +
+                                rs.getString("items")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void selectAllFromOrdersTable() {
+        String sql = "SELECT * FROM " + table_name;
+
+        try {
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+//(id, clientID, address, items, itemsAmounts, paymentMethods, paymentAmounts, price)
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        rs.getString("id") + "\t" +
+                                rs.getString("clientID") + "\t" +
+                                rs.getString("address") + "\t" +
+                                rs.getString("items") + "\t" +
+                                rs.getString("itemsAmounts") + "\t" +
+                                rs.getString("paymentMethods") + "\t" +
+                                rs.getString("paymentAmounts") + "\t" +
+                                rs.getFloat("price")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteFromTable(String id) {
+        char tableChar = id.charAt(0);
+
+        switch(tableChar) {
+            case 'u':
+                deleteFromAuthTable(id);
+                break;
+            case 'i':
+                deleteFromItemsTable(id);
+                break;
+            case 'c':
+                deleteFromCategoryTable(id);
+                break;
+            case 'o':
+                deleteFromOrdersTable(id);
+                break;
+            default:
+                System.out.println("Invalid ID");
+                break;
+        }
+    }
+
+
+    private void deleteFromAuthTable(String id) {
+        String sql = "DELETE FROM "+ table_name +" WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void deleteFromItemsTable(String id) {
+        String sql = "DELETE FROM "+ table_name +" WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void deleteFromCategoryTable(String id) {
+        String sql = "DELETE FROM "+ table_name +" WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void deleteFromOrdersTable(String id) {
+        String sql = "DELETE FROM "+ table_name +" WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 
 //    public void createNewTableUserData() {
 //        // SQLite connection string
