@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TOFEE_CD/out/production/TOFEE_CD/lib/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TOFEE_CD/out/production/TOFEE_CD/lib/javax.mail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

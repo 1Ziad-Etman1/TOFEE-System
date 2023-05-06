@@ -63,26 +63,68 @@ public class Connect {
 
     }
 
-    public void insertInTtemsTable(String id, String name, String username, String email, String password, String phoneNum, String address, String type ) {
-        String sql = "INSERT INTO "+ table_name +"(id, name, username, email, password, phoneNum, address, type) VALUES(?,?,?,?,?,?,?,?)";
+    public void insertInItemsTable(String id, String name, String categoryName, String brand, float price, String seal_loose, float discountPercentage, float amountInStores, int loualPoints, String description ) {
+        String sql = "INSERT INTO "+ table_name +
+        "(id, name, categoryName, brand, price, seal_loose, discountPercentage, amountInStores, loualPoints, description) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try{
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             pstmt.setString(2, name);
-            pstmt.setString(3, username);
-            pstmt.setString(4, email);
-            pstmt.setString(5, password);
-            pstmt.setString(6, phoneNum);
-            pstmt.setString(7, address);
-            pstmt.setString(8, type);
+            pstmt.setString(3, categoryName);
+            pstmt.setString(4, brand);
+            pstmt.setFloat (5, price);
+            pstmt.setString(6, seal_loose);
+            pstmt.setFloat (7, discountPercentage);
+            pstmt.setFloat (8, amountInStores);
+            pstmt.setInt   (9, loualPoints);
+            pstmt.setString(10, description);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
     }
+
+    public void insertInCatigoryTable(String id, String name, String items) {
+        String sql = "INSERT INTO "+ table_name +"(id, name, items) VALUES(?,?,?)";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, items);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void insertInOrdersTable(String id, String clientID, String address, String items, String itemsAmounts, String paymentMethods, String paymentAmounts, float price ) {
+        String sql = "INSERT INTO "+ table_name +"(id, clientID, address, items, itemsAmounts, paymentMethods, paymentAmounts, price) VALUES(?,?,?,?,?,?,?,?)";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.setString(2, clientID);
+            pstmt.setString(3, address);
+            pstmt.setString(4, items);
+            pstmt.setString(5, itemsAmounts);
+            pstmt.setString(6, paymentMethods);
+            pstmt.setString(7, paymentAmounts);
+            pstmt.setFloat(8, price);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+
     public void selectAllFromAuthTable() {
         String sql = "SELECT * FROM " + table_name;
 
