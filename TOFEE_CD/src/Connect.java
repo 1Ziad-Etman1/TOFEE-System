@@ -312,6 +312,105 @@ public class Connect {
         }
     }
 
+    public void updateTable(String id, String colName, String newVal) {
+        char tableChar = id.charAt(0);
+
+        switch(tableChar) {
+            case 'u':
+                updateAuthTable(id, colName, newVal);
+                break;
+            case 'i':
+                updateItemsTable(id, colName, newVal);
+                break;
+            case 'c':
+                updateCategoryTable(id, colName, newVal);
+                break;
+            case 'o':
+                updateOrdersTable(id, colName, newVal);
+                break;
+            default:
+                System.out.println("Invalid ID");
+                break;
+        }
+    }
+
+    private void updateAuthTable(String id, String colName, String newVal) {
+        String sql = "UPDATE " + table_name + " SET " + colName + " = ? WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            if (colName.equals("phoneNum")) {
+                pstmt.setLong(1, Long.parseLong(newVal));
+            } else {
+                pstmt.setString(1, newVal);
+            }
+
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateItemsTable(String id, String colName, String newVal) {
+        String sql = "UPDATE " + table_name + " SET " + colName + " = ? WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            if (colName.equals("price") || colName.equals("discountPercentage") || colName.equals("amountInStores")) {
+                pstmt.setFloat(1, Float.parseFloat(newVal));
+            } else if (colName.equals("loualPoints")) {
+                pstmt.setInt(1, Integer.parseInt(newVal));
+            } else {
+                pstmt.setString(1, newVal);
+            }
+
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateCategoryTable(String id, String colName, String newVal) {
+        String sql = "UPDATE " + table_name + " SET " + colName + " = ? WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, newVal);
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void updateOrdersTable(String id, String colName, String newVal) {
+        String sql = "UPDATE " + table_name + " SET " + colName + " = ? WHERE id = ?";
+
+        try{
+            Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            if (colName.equals("totalCost")) {
+                pstmt.setFloat(1, Float.parseFloat(newVal));
+            } else if (colName.equals("orderStatus")) {
+                pstmt.setInt(1, Integer.parseInt(newVal));
+            } else {
+                pstmt.setString(1, newVal);
+            }
+
+            pstmt.setString(2, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 
 //    public void createNewTableUserData() {
