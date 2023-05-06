@@ -412,7 +412,29 @@ public class Connect {
         }
     }
 
+    public boolean checkCredentials(String username, String password) {
+        String sql = "SELECT * FROM UsersData WHERE username = ? AND password = ?";
 
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+
+            // If there is a row that matches the provided username and password, return true
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // If there is no row that matches the provided username and password, return false
+        return false;
+    }
+    
 //    public void createNewTableUserData() {
 //        // SQLite connection string
 //        String url = "jdbc:sqlite:DataBases/" + database_name;
