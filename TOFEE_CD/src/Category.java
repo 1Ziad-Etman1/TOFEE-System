@@ -69,16 +69,21 @@ public class Category {
      *
      * @return the item
      */
-    public Item getItem() {
-		// TODO - implement Category.getItem
+    public Item getItem(String itemName) {
+		for (Item item:
+			 items) {
+				if (item.getName() == itemName){
+					return item ;
+				}
+		}
 		throw new UnsupportedOperationException();
 	}
 
     /**
      * Add item.
      */
-    public void addItem() {
-		// TODO - implement Category.addItem
+    public void addItem(Item item) {
+		items.add(item);
 		throw new UnsupportedOperationException();
 	}
 
@@ -88,7 +93,13 @@ public class Category {
      * @param itemId the item id
      */
     public void deleteItem(String itemId) {
-		// TODO - implement Category.deleteItem
+
+		for (Item item:
+				items) {
+			if (item.getId() == itemId){
+				items.remove(item);
+			}
+		}
 		throw new UnsupportedOperationException();
 	}
 
