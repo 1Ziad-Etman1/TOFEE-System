@@ -412,17 +412,64 @@ public class Connect {
         }
     }
 
-    public boolean checkCredentials(String username, String password) {
-        String sql = "SELECT * FROM UsersData WHERE username = ? AND password = ?";
+    public boolean checkCredentials(String username, String email, String password) {
+        String sql = "SELECT * FROM UsersData WHERE username = ? AND email = ? AND password = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
+            pstmt.setString(2, email);
+            pstmt.setString(3, password);
             ResultSet rs = pstmt.executeQuery();
 
             // If there is a row that matches the provided username and password, return true
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // If there is no row that matches the provided username, email and password, return false
+        return false;
+    }
+
+    public boolean checkMail(String email) {
+        String sql = "SELECT * FROM UsersData WHERE email = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+
+            // If there is a row that matches the provided email, return true
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // If there is no row that matches the provided username and password, return false
+        return false;
+    }
+
+    public boolean checkMail_ID(String ID,String email) {
+        String sql = "SELECT * FROM UsersData WHERE id = ? AND email = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, ID);
+            pstmt.setString(2, email);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            // If there is a row that matches the provided email, return true
             if (rs.next()) {
                 return true;
             }

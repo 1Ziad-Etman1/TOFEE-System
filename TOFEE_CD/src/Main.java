@@ -15,7 +15,7 @@ public class Main {
         //c.deleteFromTable("o7");
         Category ca;
         Item ite;
-        ca.addItem(ite);
+//        ca.addItem(ite);
         c.selectAll();
     }
 
