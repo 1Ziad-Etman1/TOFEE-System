@@ -68,7 +68,7 @@ public class Login_system {
 
 					if (choice == 1){
 						return clearData();
-					} else{
+					} else if (choice == 2){
 						return false;
 					}
 				}
@@ -130,6 +130,7 @@ public class Login_system {
 		Connect c = new Connect("UsersData");
 		clearConsole();
 		System.out.println("\t\t\tForget Password");
+		email = "ddd";
 		while (!verifyMail()){
 
 			System.out.println("Please Enter your email : ");
@@ -152,9 +153,9 @@ public class Login_system {
 
 				System.out.println("Enter your new password: ");
 				String newPass = in.next();
-				String ID = "";
+				String ID = "xzx";
 				while (!checkMailAndID(ID)){
-					System.out.println("Enter your right ID please: ");
+					System.out.println("Enter your correct ID please: ");
 					ID = in.next();
 				}
 
@@ -163,7 +164,6 @@ public class Login_system {
 				break;
 			} else {
 				System.out.println("Wrong mail try again!\n");
-				continue;
 			}
 		}
 		clearConsole();
@@ -176,9 +176,6 @@ public class Login_system {
      */
     public Boolean verifyUname_Password() {
 		Connect c = new Connect("UsersData");
-		if (c.checkCredentials(userName, email, password)){
-			return true;
-		}
 		return c.checkCredentials(userName, email, password);
 	}
 
@@ -193,7 +190,7 @@ public class Login_system {
 	}
 
 	// Clear the console function
-	public static void clearConsole() {
+	public void clearConsole() {
 		try {
 			if (System.getProperty("os.name").contains("Windows")) {
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

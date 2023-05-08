@@ -218,7 +218,7 @@ public class Connect {
             Connection conn = this.connect();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-//(id, clientID, address, items, itemsAmounts, paymentMethods, paymentAmounts, price)
+
             // loop through the result set
             while (rs.next()) {
                 System.out.println(
@@ -341,11 +341,9 @@ public class Connect {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
-            if (colName.equals("phoneNum")) {
-                pstmt.setLong(1, Long.parseLong(newVal));
-            } else {
-                pstmt.setString(1, newVal);
-            }
+
+            pstmt.setString(1, newVal);
+
 
             pstmt.setString(2, id);
             pstmt.executeUpdate();

@@ -87,6 +87,7 @@ public class Payment_System { // DONE
      * Interface.
      */
     public void Interface(){
+		Scanner in = new Scanner(System.in);
 		String payways01 = "0";
 		System.out.println(
 				"Welcome to payment system !\n\n" +
@@ -94,8 +95,10 @@ public class Payment_System { // DONE
 				"(Note you have to input something like 0011 means 1 if you use the pay method 0 if not)\n" +
 				"your payment methods: "
 		);
-		Scanner in = new Scanner(System.in);
+		payways01 = in.next();
+
 		while (!check_valid_payways(payways01)){
+			System.out.println("Wrong input \n Enter your payways: ");
 			payways01 = in.next();
 		}
 
@@ -147,7 +150,7 @@ public class Payment_System { // DONE
 						System.out.println("how much money you wanna pay with your Gift Voucher ? ");
 						gv = in.nextFloat();
 					}
-					setLoyalPoints(gv);
+					setGiftVoucher(gv);
 				}
 			} else {
 				String pw = payways01.substring(0, 2) + "0";
@@ -158,7 +161,7 @@ public class Payment_System { // DONE
 			payways01 = pw;
 		}
 
-		System.out.println("\n\nyour Reset.. \n"+getReset());
+		System.out.println("\n\nyour Reset.. \n" + getReceipt());
 	}
 
     /**
@@ -228,7 +231,7 @@ public class Payment_System { // DONE
      *
      * @return the reset
      */
-    public String getReset() {
+    public String getReceipt() {
 		String reset = "";
 		if (cash_money > 0){
 			reset   = "the price of your order is: " + price + "\n\n"

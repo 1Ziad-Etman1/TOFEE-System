@@ -1,15 +1,58 @@
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * The type Registeration system.
  */
 public class Registeration_System {
 
-	private String name;
-	private String mail;
-	private String password;
-	private String address;
-	private String phoneNum;
 	private String id;
+	private String name;
 	private String userName;
+	private String email;
+	private String password;
+	private String phoneNum;
+	private String address;
+
+
+
+	public  Interface(){
+		Scanner in = new Scanner(System.in);
+		System.out.println("\t\t\t\tRegistration\n" +
+				"Welcome to TOFEE-System\n" +
+				"Please Enter your name: ");
+		name = in.next();
+
+		System.out.println("Enter your username: ");
+		userName = in.next();
+
+		System.out.println("Enter your email: ");
+		email = in.next();
+
+		while (checkMail()){
+			System.out.println("Sorry this mail is used registered alreadyn\n" +
+					"Enter other email: ");
+			email = in.next();
+		}
+
+		System.out.println("Enter your password(at least 8 chars): ");
+		password = in.next();
+
+		while (password.length()<8){
+			System.out.println("your password must be 8 chars at least!!\nEnter your password: ");
+			password = in.next();
+		}
+
+		System.out.println("Enter your Phone number: ");
+		phoneNum = in.next();
+
+		System.out.println("Enter your address: ");
+		address = in.next();
+
+		Connect c = new Connect("UsersData");
+		c.insertInAuthTable("u26", name, userName, email, password, phoneNum, address,"client");
+
+	}
 
     /**
      * Gets name.
@@ -30,21 +73,21 @@ public class Registeration_System {
 	}
 
     /**
-     * Gets mail.
+     * Gets email.
      *
-     * @return the mail
+     * @return the email
      */
-    public String getMail() {
-		return this.mail;
+    public String getEmail() {
+		return this.email;
 	}
 
     /**
-     * Sets mail.
+     * Sets email.
      *
-     * @param mail the mail
+     * @param email the email
      */
-    public void setMail(String mail) {
-		this.mail = mail;
+    public void setEmail(String email) {
+		this.email = email;
 	}
 
     /**
@@ -120,29 +163,45 @@ public class Registeration_System {
 	}
 
     /**
-     * Check mail boolean.
+     * Check email boolean.
      *
      * @return the boolean
      */
     public Boolean checkMail() {
-		// TODO - implement Registeration_System.checkMail
+		// TODO - implement Registeration_System.checkMail-Search-For-Its-Regex-IMPORTANT
 		throw new UnsupportedOperationException();
 	}
 
     /**
-     * Verify mail.
+     * Verify email.
      */
-    public void verifyMail() {
-		// TODO - implement Registeration_System.verifyMail
-		throw new UnsupportedOperationException();
+
+    public Boolean verifyMail() {
+		Connect c = new Connect("UsersData");
+		return c.checkMail(email);
+	}
+
+	public void clearConsole() {
+		try {
+			if (System.getProperty("os.name").contains("Windows")) {
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+			}
+			else {
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
+			}
+		}
+		catch (IOException | InterruptedException ex) {
+			ex.printStackTrace();
+		}
 	}
 
     /**
      * Clear data.
      */
-    public void clearData() {
-		// TODO - implement Registeration_System.clearData
-		throw new UnsupportedOperationException();
+    public Boolean clearData() {
+		clearConsole();
+		return Interface();
 	}
 
     /**
@@ -172,5 +231,7 @@ public class Registeration_System {
     public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
+
 
 }

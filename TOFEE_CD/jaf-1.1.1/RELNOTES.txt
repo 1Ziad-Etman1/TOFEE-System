@@ -41,7 +41,7 @@ http://java.sun.com/beans -- This is the JavaBeans web site which is
                              JAF spec is available in the 'Glasgow' area.
 
 http://java.sun.com/products/javamail -- The JavaMail(tm) API provides a set
-                             of abstract classes that model a mail system.
+                             of abstract classes that model a email system.
                              It's implementation is dependent on the JAF.
 
 

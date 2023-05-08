@@ -2,7 +2,6 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-import java.sql.*;
 
 /**
  * The type Otpmail.
@@ -15,7 +14,7 @@ public class OTPMAIL {
      * @param reciever the reciever
      * @return the int
      */
-    public int mn(String reciever ) {
+    public int mn(String reciever) {
 
         // Set the email properties
         Properties props = new Properties();
@@ -45,7 +44,7 @@ public class OTPMAIL {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(reciever)); /*HERE THE RECIEVER EMAIL*/
 
             // Set the email subject
-            message.setSubject("TOFEE System Authentication \nYour OTP");
+            message.setSubject("TOFEE System Authentication");
 
             // Generate a random OTP
             int otp = (int) (Math.random() * 1000000);
