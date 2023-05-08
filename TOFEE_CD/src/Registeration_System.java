@@ -16,7 +16,7 @@ public class Registeration_System {
 
 
 
-	public  Interface(){
+	public void Interface(){
 		Scanner in = new Scanner(System.in);
 		System.out.println("\t\t\t\tRegistration\n" +
 				"Welcome to TOFEE-System\n" +
@@ -30,10 +30,30 @@ public class Registeration_System {
 		email = in.next();
 
 		while (checkMail()){
-			System.out.println("Sorry this mail is used registered alreadyn\n" +
+			System.out.println("Sorry this mail is used registered already\n" +
 					"Enter other email: ");
 			email = in.next();
 		}
+		
+		System.out.println("we will send you otp mail now!");
+		OTPMAIL otp = new OTPMAIL();
+		int otpCode = otp.mn(email);
+		System.out.println("Enter the code you received : ");
+		int inpt = in.nextInt();
+
+		while (inpt != otpCode) {
+			System.out.println("Wrong Code!\n");
+			System.out.println("we will send you otp mail again!");
+			otpCode = otp.mn(email);
+			System.out.println("Enter the code you received : ");
+			inpt = in.nextInt();
+		}
+
+		System.out.println("email verified! \n");
+
+
+
+
 
 		System.out.println("Enter your password(at least 8 chars): ");
 		password = in.next();
@@ -199,9 +219,9 @@ public class Registeration_System {
     /**
      * Clear data.
      */
-    public Boolean clearData() {
+    public void clearData() {
 		clearConsole();
-		return Interface();
+		Interface();
 	}
 
     /**
