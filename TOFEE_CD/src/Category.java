@@ -69,22 +69,23 @@ public class Category {
      *
      * @return the item
      */
-    public Item getItem(String itemName) {
-		for (Item item:
-			 items) {
-				if (item.getName() == itemName){
-					return item ;
-				}
-		}
-		throw new UnsupportedOperationException();
+    public void getItem(String itemName) {
+//		for (Item item: items) {
+//				if (item.getName() == itemName){
+//					return item ;
+//				}
+//		}
+		Connect c = new Connect("Items");
+		c.search_viewByName(itemName);
+
 	}
 
     /**
      * Add item.
      */
     public void addItem(Item item) {
-		items.add(item);
-		throw new UnsupportedOperationException();
+		Connect c = new Connect("Items");
+		c.insertInItemsTable(item.getId(),item.getName(),item.getCategoryName(),item.getBarnd(),item.getPrice(),item.getSealedOrLoose(),item.getDiscountPercentage(),item.getAmountInStores(),item.getPoints(),item.getDescription());
 	}
 
     /**
@@ -94,13 +95,15 @@ public class Category {
      */
     public void deleteItem(String itemId) {
 
-		for (Item item:
-				items) {
-			if (item.getId() == itemId){
-				items.remove(item);
-			}
-		}
-		throw new UnsupportedOperationException();
+//		for (Item item:
+//				items) {
+//			if (item.getId() == itemId){
+//				items.remove(item);
+//			}
+//		}
+//		throw new UnsupportedOperationException();
+		Connect c = new Connect("Items");
+		c.deleteFromTable(itemId);
 	}
 
 }

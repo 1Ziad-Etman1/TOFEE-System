@@ -2,7 +2,6 @@ import java.sql.*;
 
 public class Connect {
 
-    String database_name;
     String table_name;
 
 
@@ -12,14 +11,13 @@ public class Connect {
      * @return
      */
     public Connect (String TB_name){
-        database_name = "TOFEE.db";
         table_name = TB_name;
     }
     public Connection connect() {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:DataBases/" + database_name;
+            String url = "jdbc:sqlite:DataBases/TOFEE.db";
             // create a connection to the database  
             conn = DriverManager.getConnection(url);
 
@@ -63,9 +61,9 @@ public class Connect {
 
     }
 
-    public void insertInItemsTable(String id, String name, String categoryName, String brand, float price, String seal_loose, float discountPercentage, float amountInStores, int loualPoints, String description ) {
+    public void insertInItemsTable(String id, String name, String categoryName, String brand, float price, String seal_loose, float discountPercentage, float amountInStores, int loyalPoints, String description ) {
         String sql = "INSERT INTO "+ table_name +
-        "(id, name, categoryName, brand, price, seal_loose, discountPercentage, amountInStores, loualPoints, description) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        "(id, name, categoryName, brand, price, seal_loose, discountPercentage, amountInStores, loyalPoints, description) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try{
             Connection conn = this.connect();
@@ -78,7 +76,7 @@ public class Connect {
             pstmt.setString(6, seal_loose);
             pstmt.setFloat (7, discountPercentage);
             pstmt.setFloat (8, amountInStores);
-            pstmt.setInt   (9, loualPoints);
+            pstmt.setInt   (9, loyalPoints);
             pstmt.setString(10, description);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -478,6 +476,62 @@ public class Connect {
 
         // If there is no row that matches the provided username and password, return false
         return false;
+    }
+
+    public void search_viewByName(String key){
+        String sql = "SELECT * FROM " + table_name + " WHERE name = " + key + " ;";
+
+        try {
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        rs.getString("id") + "\t" +
+                                rs.getString("name") + "\t" +
+                                rs.getString("categoryName") + "\t" +
+                                rs.getString("brand") + "\t" +
+                                rs.getFloat("price") + "\t" +
+                                rs.getString("seal_loose") + "\t" +
+                                rs.getFloat("discountPercentage") + "\t" +
+                                rs.getFloat("amountInStores") + "\t" +
+                                rs.getInt("loualPoints") + "\t" +
+                                rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void search_viewByCategory(String key){
+        String sql = "SELECT * FROM " + table_name + " WHERE category = " + key + " ;";
+
+        try {
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(
+                        rs.getString("id") + "\t" +
+                                rs.getString("name") + "\t" +
+                                rs.getString("categoryName") + "\t" +
+                                rs.getString("brand") + "\t" +
+                                rs.getFloat("price") + "\t" +
+                                rs.getString("seal_loose") + "\t" +
+                                rs.getFloat("discountPercentage") + "\t" +
+                                rs.getFloat("amountInStores") + "\t" +
+                                rs.getInt("loualPoints") + "\t" +
+                                rs.getString("description")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
     
 //    public void createNewTableUserData() {

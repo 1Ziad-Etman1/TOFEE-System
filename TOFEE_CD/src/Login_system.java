@@ -13,6 +13,7 @@ public class Login_system {
 
 	public boolean Interface(){
 		Scanner in = new Scanner(System.in);
+		clearConsole();
 		while (true){
 			System.out.println("\t\t\t\tLogin\nWelcome to TOFEE System\n");
 			System.out.println("if you want to clear data and start fill  again write \"clear\"\nPlease Enter your \nUsername: ");
@@ -42,7 +43,7 @@ public class Login_system {
 						"2-No\n" +
 						"Your Choice: ");
 				fp = in.nextInt();
-				while (fp != 1 || fp != 2){
+				while (fp != 1 && fp != 2){
 					System.out.println("wrong input try again\n" +
 							"Did you forget your password? \n" +
 							"1-Yes\n" +
@@ -59,7 +60,7 @@ public class Login_system {
 						"2-Go to register page");
 				System.out.println("your choice: ");
 				choice = in.nextInt();
-				while (choice != 1 || choice != 2){
+				while (choice != 1 && choice != 2){
 					System.out.println("Wrong input\n");
 					System.out.println("1-Try again\n" +
 							"2-Go to register page");
@@ -67,6 +68,7 @@ public class Login_system {
 					choice = in.nextInt();
 
 					if (choice == 1){
+						clearConsole();
 						return clearData();
 					} else if (choice == 2){
 						return false;

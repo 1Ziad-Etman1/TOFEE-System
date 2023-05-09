@@ -18,6 +18,7 @@ public class Registeration_System {
 
 	public void Interface(){
 		Scanner in = new Scanner(System.in);
+
 		System.out.println("\t\t\t\tRegistration\n" +
 				"Welcome to TOFEE-System\n" +
 				"Please Enter your name: ");
@@ -29,13 +30,13 @@ public class Registeration_System {
 		System.out.println("Enter your email: ");
 		email = in.next();
 
-		while (checkMail()){
-			System.out.println("Sorry this mail is used registered already\n" +
+		while (verifyMail()){
+			System.out.println("Sorry this mail is registered already\n" +
 					"Enter other email: ");
 			email = in.next();
 		}
-		
-		System.out.println("we will send you otp mail now!");
+
+		System.out.println("we will send you an otp mail now!");
 		OTPMAIL otp = new OTPMAIL();
 		int otpCode = otp.mn(email);
 		System.out.println("Enter the code you received : ");
@@ -182,15 +183,6 @@ public class Registeration_System {
 		this.id = id;
 	}
 
-    /**
-     * Check email boolean.
-     *
-     * @return the boolean
-     */
-    public Boolean checkMail() {
-		// TODO - implement Registeration_System.checkMail-Search-For-Its-Regex-IMPORTANT
-		throw new UnsupportedOperationException();
-	}
 
     /**
      * Verify email.

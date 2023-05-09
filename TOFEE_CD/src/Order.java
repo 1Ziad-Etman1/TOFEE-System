@@ -9,6 +9,15 @@ public class Order {
 	private String address;
 	private float itemsAmounts;
 
+
+	public void Interface(){
+		//TODO-implement-the-interface-of-creating-new-order-and-insert-into-database
+
+		Connect c = new Connect("orders");
+//		c.insertInOrdersTable();
+		throw new UnsupportedOperationException();
+	}
+
     /**
      * Gets id.
      *
@@ -88,17 +97,11 @@ public class Order {
      * @param itemName the item name
      * @return Item name
      */
-    public String getItem(String itemName) {
-		// TODO - implement Order.getItem
-		return "Item: " + itemName;
+    public void getItem(String itemName) {
+		Connect c = new Connect("Items");
+		c.search_viewByName(itemName);
 	}
 
-    /**
-     * performs an operation
-     */
-    public void operation() {
-		// TODO - implement Order.operation
-		System.out.println("Performing an operation");
-	}
+
 
 }
