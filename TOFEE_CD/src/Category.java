@@ -67,6 +67,7 @@ public class Category {
     /**
      * Gets item.
      *
+     * @param itemName the item name
      * @return the item
      */
     public void getItem(String itemName) {
@@ -82,6 +83,8 @@ public class Category {
 
     /**
      * Add item.
+     *
+     * @param item the item
      */
     public void addItem(Item item) {
 		Connect c = new Connect("Items");

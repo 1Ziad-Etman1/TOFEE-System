@@ -14,10 +14,10 @@ public class Payment_System { // DONE
 	private float loyalty_points_money;
 	private ArrayList<Boolean> payWays; // 0: Cash 1: Smart_Wallets 2: Loyalty_Points 3: Gift_Voucher
 
-    /**
-     * Instantiates a new Payment system.
-     */
-    public Payment_System() {
+	/**
+	 * Instantiates a new Payment system.
+	 */
+	public Payment_System() {
 		price = 0;
 		cash_money = 0;
 		s_wallet_money = 0;
@@ -30,13 +30,12 @@ public class Payment_System { // DONE
 		}
 	}
 
-    /**
-     * Instantiates a new Payment system.
-     *
-     * @param price     the price
-     * @param payways01 the payways 01
-     */
-    public Payment_System(float price, String payways01) {
+	/**
+	 * Instantiates a new Payment system.
+	 *
+	 * @param price the price
+	 */
+	public Payment_System(float price) {
 		this.price = price;
 		remain_price = price;
 		cash_money = 0;
@@ -45,24 +44,19 @@ public class Payment_System { // DONE
 		loyalty_points_money = 0;
 
 		payWays = new ArrayList<Boolean>(4);
-
 		for (int i = 0; i < 4; i++) {
-			if (payways01.charAt(i) == '0') {
-				payWays.set(i, false);
-			} else if (payways01.charAt(i) == '1') {
-				payWays.set(i, true);
-			}
+			payWays.set(i, false);
 		}
 
 	}
 
-    /**
-     * Check valid payways boolean.
-     *
-     * @param pw the pw
-     * @return the boolean
-     */
-    public boolean check_valid_payways(String pw){
+	/**
+	 * Check valid payways boolean.
+	 *
+	 * @param pw the pw
+	 * @return the boolean
+	 */
+	public boolean check_valid_payways(String pw){
 		if(pw == null) return false;
 
 		if(pw.length() != 4) return false;
@@ -83,10 +77,10 @@ public class Payment_System { // DONE
 		return true;
 	}
 
-    /**
-     * Interface.
-     */
-    public void Interface(){
+	/**
+	 * Interface.
+	 */
+	public void Interface(){
 		Scanner in = new Scanner(System.in);
 		String payways01 = "0";
 		System.out.println(
@@ -164,22 +158,22 @@ public class Payment_System { // DONE
 		System.out.println("\n\nyour Reset.. \n" + getReceipt());
 	}
 
-    /**
-     * Sets price.
-     *
-     * @param price the price
-     */
-    public void setPrice(float price) {
+	/**
+	 * Sets price.
+	 *
+	 * @param price the price
+	 */
+	public void setPrice(float price) {
 		this.price = price;
 		this.remain_price = price;
 	}
 
-    /**
-     * Sets cash.
-     *
-     * @param cashMoney the cash money
-     */
-    public void setCash(float cashMoney) {
+	/**
+	 * Sets cash.
+	 *
+	 * @param cashMoney the cash money
+	 */
+	public void setCash(float cashMoney) {
 		if (cashMoney > 0 && cashMoney < remain_price){
 			payWays.set(0,true);
 		}
@@ -187,12 +181,12 @@ public class Payment_System { // DONE
 		remain_price -= cash_money;
 	}
 
-    /**
-     * Sets smart wallet.
-     *
-     * @param sWalletMoney the s wallet money
-     */
-    public void setSmart_Wallet(float sWalletMoney) {
+	/**
+	 * Sets smart wallet.
+	 *
+	 * @param sWalletMoney the s wallet money
+	 */
+	public void setSmart_Wallet(float sWalletMoney) {
 		if (sWalletMoney > 0){
 			payWays.set(1,true);
 		}
@@ -200,12 +194,12 @@ public class Payment_System { // DONE
 		remain_price -= s_wallet_money;
 	}
 
-    /**
-     * Sets loyal points.
-     *
-     * @param loyaltyPointsMoney the loyalty points money
-     */
-    public void setLoyalPoints(float loyaltyPointsMoney) {
+	/**
+	 * Sets loyal points.
+	 *
+	 * @param loyaltyPointsMoney the loyalty points money
+	 */
+	public void setLoyalPoints(float loyaltyPointsMoney) {
 		if (loyaltyPointsMoney > 0){
 			payWays.set(2,true);
 		}
@@ -213,12 +207,12 @@ public class Payment_System { // DONE
 		this.remain_price -= loyalty_points_money;
 	}
 
-    /**
-     * Sets gift voucher.
-     *
-     * @param giftVoucherMoney the gift voucher money
-     */
-    public void setGiftVoucher(float giftVoucherMoney) {
+	/**
+	 * Sets gift voucher.
+	 *
+	 * @param giftVoucherMoney the gift voucher money
+	 */
+	public void setGiftVoucher(float giftVoucherMoney) {
 		if (giftVoucherMoney > 0){
 			payWays.set(3,true);
 		}
@@ -226,12 +220,12 @@ public class Payment_System { // DONE
 		this.remain_price -= gift_voucher_money;
 	}
 
-    /**
-     * Gets reset.
-     *
-     * @return the reset
-     */
-    public String getReceipt() {
+	/**
+	 * Gets reset.
+	 *
+	 * @return the reset
+	 */
+	public String getReceipt() {
 		String reset = "";
 		if (cash_money > 0){
 			reset   = "the price of your order is: " + price + "\n\n"
@@ -257,6 +251,55 @@ public class Payment_System { // DONE
 
 
 		return reset;
+	}
+
+	/**
+	 * Get pay ways string.
+	 *
+	 * @return the string
+	 */
+	public String getPayWays (){
+		String ways = "";
+		if (payWays.get(0)){
+			ways += "cash,";
+		}
+		if (payWays.get(1)){
+			ways += "smartWallet,";
+		}
+		if (payWays.get(2)){
+			ways += "loyaltyPoints,";
+		}
+		if (payWays.get(3)){
+			ways += "giftVoucher,";
+		}
+		ways = ways.substring(0,ways.length()-2);
+
+		return ways;
+	}
+
+	/**
+	 * Get pay amounts string.
+	 *
+	 * @return the string
+	 */
+	public String getPayAmounts (){
+		String amounts = "";
+		if (payWays.get(0)){
+			amounts = amounts + ',' +  Float.toString(cash_money);
+		}
+		if (payWays.get(1)){
+			amounts = amounts + ',' +  Float.toString(s_wallet_money);
+		}
+		if (payWays.get(2)){
+			amounts = amounts + ',' +  Float.toString(loyalty_points_money);
+		}
+		if (payWays.get(3)){
+			amounts = amounts + ',' +  Float.toString(gift_voucher_money);
+		}
+		amounts = amounts.substring(1, amounts.length()-1);
+
+		return amounts;
+
 	}
 
 }

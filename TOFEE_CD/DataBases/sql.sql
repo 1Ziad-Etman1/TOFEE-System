@@ -138,7 +138,7 @@
 -- ('o7', 'c2', '654 Birch St', 'i19,i20', '3,2', 'cash,giftVoucher', '7.57,7', 14.57);
 
 
--- SELECT * FROM UsersData;
--- SELECT * FROM Categories;
+SELECT * FROM UsersData;
+SELECT * FROM Categories;
 SELECT * FROM Items;
--- SELECT * FROM orders;
+SELECT * FROM orders;

@@ -15,8 +15,10 @@ public class Registeration_System {
 	private String address;
 
 
-
-	public void Interface(){
+    /**
+     * Interface.
+     */
+    public void Interface(){
 		Scanner in = new Scanner(System.in);
 
 		System.out.println("\t\t\t\tRegistration\n" +
@@ -70,8 +72,10 @@ public class Registeration_System {
 		System.out.println("Enter your address: ");
 		address = in.next();
 
+		id = "u26";
 		Connect c = new Connect("UsersData");
-		c.insertInAuthTable("u26", name, userName, email, password, phoneNum, address,"client");
+		ID_Generator d = new ID_Generator();
+		c.insertInAuthTable(d.next_Label_user(), name, userName, email, password, phoneNum, address,"client");
 
 	}
 
@@ -186,14 +190,18 @@ public class Registeration_System {
 
     /**
      * Verify email.
+     *
+     * @return the boolean
      */
-
     public Boolean verifyMail() {
 		Connect c = new Connect("UsersData");
 		return c.checkMail(email);
 	}
 
-	public void clearConsole() {
+    /**
+     * Clear console.
+     */
+    public void clearConsole() {
 		try {
 			if (System.getProperty("os.name").contains("Windows")) {
 				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();

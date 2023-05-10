@@ -1,18 +1,36 @@
 import java.sql.*;
 
+//UsersData
+//Items
+//orders
+//categories
+
+/**
+ * The type Connect.
+ */
 public class Connect {
 
+    /**
+     * The Table name.
+     */
     String table_name;
 
 
     /**
      * Connect to a sample database
      *
+     * @param TB_name the tb name
      * @return
      */
     public Connect (String TB_name){
         table_name = TB_name;
     }
+
+    /**
+     * Connect connection.
+     *
+     * @return the connection
+     */
     public Connection connect() {
         Connection conn = null;
         try {
@@ -39,7 +57,18 @@ public class Connect {
     }
 
 
-
+    /**
+     * Insert in auth table.
+     *
+     * @param id       the id
+     * @param name     the name
+     * @param username the username
+     * @param email    the email
+     * @param password the password
+     * @param phoneNum the phone num
+     * @param address  the address
+     * @param type     the type
+     */
     public void insertInAuthTable(String id, String name, String username, String email, String password, String phoneNum, String address, String type ) {
         String sql = "INSERT INTO "+ table_name +"(id, name, username, email, password, phoneNum, address, type) VALUES(?,?,?,?,?,?,?,?)";
 
@@ -61,6 +90,20 @@ public class Connect {
 
     }
 
+    /**
+     * Insert in items table.
+     *
+     * @param id                 the id
+     * @param name               the name
+     * @param categoryName       the category name
+     * @param brand              the brand
+     * @param price              the price
+     * @param seal_loose         the seal loose
+     * @param discountPercentage the discount percentage
+     * @param amountInStores     the amount in stores
+     * @param loyalPoints        the loyal points
+     * @param description        the description
+     */
     public void insertInItemsTable(String id, String name, String categoryName, String brand, float price, String seal_loose, float discountPercentage, float amountInStores, int loyalPoints, String description ) {
         String sql = "INSERT INTO "+ table_name +
         "(id, name, categoryName, brand, price, seal_loose, discountPercentage, amountInStores, loyalPoints, description) VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -85,6 +128,13 @@ public class Connect {
 
     }
 
+    /**
+     * Insert in catigory table.
+     *
+     * @param id    the id
+     * @param name  the name
+     * @param items the items
+     */
     public void insertInCatigoryTable(String id, String name, String items) {
         String sql = "INSERT INTO "+ table_name +"(id, name, items) VALUES(?,?,?)";
 
@@ -101,6 +151,18 @@ public class Connect {
 
     }
 
+    /**
+     * Insert in orders table.
+     *
+     * @param id             the id
+     * @param clientID       the client id
+     * @param address        the address
+     * @param items          the items
+     * @param itemsAmounts   the items amounts
+     * @param paymentMethods the payment methods
+     * @param paymentAmounts the payment amounts
+     * @param price          the price
+     */
     public void insertInOrdersTable(String id, String clientID, String address, String items, String itemsAmounts, String paymentMethods, String paymentAmounts, float price ) {
         String sql = "INSERT INTO "+ table_name +"(id, clientID, address, items, itemsAmounts, paymentMethods, paymentAmounts, price) VALUES(?,?,?,?,?,?,?,?)";
 
@@ -122,6 +184,9 @@ public class Connect {
 
     }
 
+    /**
+     * Select all.
+     */
     public void selectAll(){
         if (table_name == "UsersData"){
             selectAllFromAuthTable();
@@ -235,6 +300,11 @@ public class Connect {
         }
     }
 
+    /**
+     * Delete from table.
+     *
+     * @param id the id
+     */
     public void deleteFromTable(String id) {
         char tableChar = id.charAt(0);
 
@@ -310,6 +380,13 @@ public class Connect {
         }
     }
 
+    /**
+     * Update table.
+     *
+     * @param id      the id
+     * @param colName the col name
+     * @param newVal  the new val
+     */
     public void updateTable(String id, String colName, String newVal) {
         char tableChar = id.charAt(0);
 
@@ -408,6 +485,14 @@ public class Connect {
         }
     }
 
+    /**
+     * Check credentials boolean.
+     *
+     * @param username the username
+     * @param email    the email
+     * @param password the password
+     * @return the boolean
+     */
     public boolean checkCredentials(String username, String email, String password) {
         String sql = "SELECT * FROM UsersData WHERE username = ? AND email = ? AND password = ?";
 
@@ -432,6 +517,12 @@ public class Connect {
         return false;
     }
 
+    /**
+     * Check mail boolean.
+     *
+     * @param email the email
+     * @return the boolean
+     */
     public boolean checkMail(String email) {
         String sql = "SELECT * FROM UsersData WHERE email = ?";
 
@@ -454,6 +545,13 @@ public class Connect {
         return false;
     }
 
+    /**
+     * Check mail id boolean.
+     *
+     * @param ID    the id
+     * @param email the email
+     * @return the boolean
+     */
     public boolean checkMail_ID(String ID,String email) {
         String sql = "SELECT * FROM UsersData WHERE id = ? AND email = ?";
 
@@ -478,6 +576,11 @@ public class Connect {
         return false;
     }
 
+    /**
+     * Search view by name.
+     *
+     * @param key the key
+     */
     public void search_viewByName(String key){
         String sql = "SELECT * FROM " + table_name + " WHERE name = " + key + " ;";
 
@@ -506,6 +609,11 @@ public class Connect {
         }
     }
 
+    /**
+     * Search view by category.
+     *
+     * @param key the key
+     */
     public void search_viewByCategory(String key){
         String sql = "SELECT * FROM " + table_name + " WHERE category = " + key + " ;";
 
@@ -533,56 +641,61 @@ public class Connect {
             System.out.println(e.getMessage());
         }
     }
-    
-//    public void createNewTableUserData() {
-//        // SQLite connection string
-//        String url = "jdbc:sqlite:DataBases/" + database_name;
-//
-//        // SQL statement for creating a new table
-//        String sql = "CREATE TABLE IF NOT EXISTS " + table_name + " ("
-//                + " id text PRIMARY KEY,\n"
-//                + " name text NOT NULL,\n"
-//                + " username text NOT NULL,\n"
-//                + " email text NOT NULL,\n"
-//                + " password text NOT NULL,\n"
-//                + " phoneNum text NOT NULL,\n"
-//                + " address text NOT NULL\n"
-//                + " type text NOT NULL\n"
-//                + ");";
-//
-//        try{
-//            Connection conn = DriverManager.getConnection(url);
-//            Statement stmt = conn.createStatement();
-//            stmt.execute(sql);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
 
-//    public void createNewTableItems() {
-//        // SQLite connection string
-//        String url = "jdbc:sqlite:DataBases/" + database_name;
-//
-//        // SQL statement for creating a new table
-//        String sql = "CREATE TABLE IF NOT EXISTS " + table_name + " ("
-//                + " id text PRIMARY KEY,\n"
-//                + " name text NOT NULL,\n"
-//                + " categoryName text NOT NULL,\n"
-//                + " brand text NOT NULL,\n"
-//                + " price REAL NOT NULL,\n"
-//                + " seal_loose text NOT NULL,\n"
-//                + " discountPercentage REAL NOT NULL,\n"
-//                + " amountInStores REAL NOT NULL,\n"
-//                + " loyalPoints INTEGER NOT NULL,\n"
-//                + " description text NOT NULL\n"
-//                + ");";
-//
-//        try{
-//            Connection conn = DriverManager.getConnection(url);
-//            Statement stmt = conn.createStatement();
-//            stmt.execute(sql);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    /**
+     * Gets last user id.
+     *
+     * @return the last user id
+     */
+    public String getLastUserId() {
+        String lastId = "";
+
+        try {
+            // create a SQL statement to retrieve the ID of the last row in the user table
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id FROM "+table_name+" WHERE id=(SELECT MAX(id))");
+
+            // if there is a last ID, retrieve it
+            if (rs.next()) {
+                lastId = rs.getString(1);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lastId;
+    }
+
+    /**
+     * Gets price by id.
+     *
+     * @param id the id
+     * @return the price by id
+     */
+    public float getPriceById(String id) {
+        float price = 0;
+
+        try {
+            // create a SQL statement to retrieve the ID of the last row in the user table
+            Connection conn = this.connect();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT price FROM "+table_name+" WHERE id= "+id+" )");
+
+            // if there is a last ID, retrieve it
+            if (rs.next()) {
+                price = rs.getFloat(1);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return price;
+    }
 }

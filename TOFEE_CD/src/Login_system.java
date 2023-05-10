@@ -11,6 +11,11 @@ public class Login_system {
 	private String email;
 
 
+	/**
+	 * Interface boolean.
+	 *
+	 * @return the boolean
+	 */
 	public boolean Interface(){
 		Scanner in = new Scanner(System.in);
 		clearConsole();
@@ -79,54 +84,64 @@ public class Login_system {
 
 	}
 
-    /**
-     * Gets user name.
-     *
-     * @return the user name
-     */
-    public String getUserName() {
+	/**
+	 * Gets user name.
+	 *
+	 * @return the user name
+	 */
+	public String getUserName() {
 		return this.userName;
 	}
 
-    /**
-     * Sets user name.
-     *
-     * @param userName the user name
-     */
-    public void setUserName(String userName) {
+	/**
+	 * Sets user name.
+	 *
+	 * @param userName the user name
+	 */
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-    /**
-     * Gets password.
-     *
-     * @return the password
-     */
-    public String getPassword() {
+	/**
+	 * Gets password.
+	 *
+	 * @return the password
+	 */
+	public String getPassword() {
 		return this.password;
 	}
 
-    /**
-     * Sets password.
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) {
+	/**
+	 * Sets password.
+	 *
+	 * @param password the password
+	 */
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets email.
+	 *
+	 * @return the email
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Sets email.
+	 *
+	 * @param email the email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
 	/**
-     * Forget password.
-     */
-    public void forgetPassword() {
+	 * Forget password.
+	 */
+	public void forgetPassword() {
 		Scanner in = new Scanner(System.in);
 		OTPMAIL otp = new OTPMAIL();
 		Connect c = new Connect("UsersData");
@@ -171,27 +186,41 @@ public class Login_system {
 		clearConsole();
 	}
 
-    /**
-     * Verify mail password boolean.
-     *
-     * @return the boolean
-     */
-    public Boolean verifyUname_Password() {
+	/**
+	 * Verify mail password boolean.
+	 *
+	 * @return the boolean
+	 */
+	public Boolean verifyUname_Password() {
 		Connect c = new Connect("UsersData");
 		return c.checkCredentials(userName, email, password);
 	}
 
+	/**
+	 * Verify mail boolean.
+	 *
+	 * @return the boolean
+	 */
 	public Boolean verifyMail(){
 		Connect c = new Connect("UsersData");
 		return c.checkMail(email);
 	}
 
+	/**
+	 * Check mail and id boolean.
+	 *
+	 * @param ID the id
+	 * @return the boolean
+	 */
 	public Boolean checkMailAndID(String ID){
 		Connect c = new Connect("UsersData");
 		return c.checkMail_ID(ID, email);
 	}
 
-	// Clear the console function
+	/**
+	 * Clear console.
+	 */
+// Clear the console function
 	public void clearConsole() {
 		try {
 			if (System.getProperty("os.name").contains("Windows")) {
@@ -207,10 +236,12 @@ public class Login_system {
 		}
 	}
 
-    /**
-     * Clear data.
-     */
-    public Boolean clearData() {
+	/**
+	 * Clear data.
+	 *
+	 * @return the boolean
+	 */
+	public Boolean clearData() {
 		clearConsole();
 		return Interface();
 	}
