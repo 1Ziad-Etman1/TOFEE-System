@@ -49,7 +49,7 @@ public class Order {
 		int choice = 0;
 		while (choice != 2){
 			System.out.print("Enter the id of item you want: ");
-			new_id = in.nextLine();
+			new_id = in.next();
 			System.out.print("how much do you want to add? ");
 			new_amount = in.nextFloat();
 			price = price + new_amount * c.getPriceById(new_id);

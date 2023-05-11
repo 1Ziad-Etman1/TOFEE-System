@@ -81,15 +81,16 @@ public class Payment_System { // DONE
 		String payways01 = "0";
 		System.out.println(
 				"Welcome to payment system !\n\n" +
+				"The price is: "+ price + '\n' +
 				"you want to pay with 1-cash 2-smart wallet 3-loyalty points 4-gift voucher\n" +
 				"(Note you have to input something like 0011 means 1 if you use the pay method 0 if not)\n" +
 				"your payment methods: "
 		);
-		payways01 = in.nextLine();
+		payways01 = in.next();
 
 		while (!check_valid_payways(payways01)){
 			System.out.println("Wrong input \n Enter your payways: ");
-			payways01 = in.nextLine();
+			payways01 = in.next();
 		}
 
 		if (payways01.charAt(0) == '1'){
@@ -147,7 +148,7 @@ public class Payment_System { // DONE
 				payways01 = pw;
 			}
 		} else {
-			String pw = payways01.substring(0, 1) + "00";
+			String pw = payways01.substring(0, 2) + "00";
 			payways01 = pw;
 		}
 
@@ -268,7 +269,7 @@ public class Payment_System { // DONE
 		if (payWays.get(3)){
 			ways += "giftVoucher,";
 		}
-		ways = ways.substring(0,ways.length()-2);
+		ways = ways.substring(0,(ways.length()-1));
 
 		return ways;
 	}

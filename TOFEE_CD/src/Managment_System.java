@@ -72,9 +72,10 @@ public class Managment_System {
 			if (choice == 1){
 				System.out.println("Enter your ID please: ");
 				String ID = "xzx";
+				ID = in.next();
 				while (!l.checkMailAndID(ID)){
 					System.out.println("Enter your correct ID please: ");
-					ID = in.nextLine();
+					ID = in.next();
 				}
 				Order o = new Order(ID);
 				o.Interface();
@@ -96,13 +97,13 @@ public class Managment_System {
 				if(c == 1){
 					String key = "";
 					System.out.println("Enter the key word you wanna search with: ");
-					key = in.nextLine();
-					searchItem(key);
-				} else if (c == 2) {
+//					key = in.nextLine();
+					searchItem(in.next());
+				} else {
 					String key = "";
 					System.out.println("Enter the key word you wanna search with: ");
-					key = in.nextLine();
-					searchCategory(key);
+//					key = in.nextLine();
+					searchCategory(in.next());
 				}
 			} else if (choice == 3) {
 				showCatalog();

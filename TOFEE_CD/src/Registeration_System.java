@@ -27,15 +27,15 @@ public class Registeration_System {
 		name = in.nextLine();
 
 		System.out.println("Enter your username: ");
-		userName = in.nextLine();
+		userName = in.next();
 
 		System.out.println("Enter your email: ");
-		email = in.nextLine();
+		email = in.next();
 
 		while (verifyMail()){
 			System.out.println("Sorry this mail is registered already\n" +
 					"Enter other email: ");
-			email = in.nextLine();
+			email = in.next();
 		}
 
 		System.out.println("we will send you an otp mail now!");
@@ -59,18 +59,18 @@ public class Registeration_System {
 
 
 		System.out.println("Enter your password(at least 8 chars): ");
-		password = in.nextLine();
+		password = in.next();
 
 		while (password.length()<8){
 			System.out.println("your password must be 8 chars at least!!\nEnter your password: ");
-			password = in.nextLine();
+			password = in.next();
 		}
 
 		System.out.println("Enter your Phone number: ");
-		phoneNum = in.nextLine();
+		phoneNum = in.next();
 
 		System.out.println("Enter your address: ");
-		address = in.nextLine();
+		address = in.next();
 
 		id = "u26";
 		Connect c = new Connect("UsersData");

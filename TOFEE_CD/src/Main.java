@@ -10,7 +10,15 @@ public class Main {
     public static void main(String[] args) {
         Managment_System m = new Managment_System();
         m.Interface();
+//        Connect c = new Connect("Items");
+//        c.search_viewByCategory("Gummies");
+//        m.searchCategory("Gummies");
     }
+//id	name	username	email	password	phoneNum	address	type
+//u1	Ziad	Z-Etman	engziad90@gmail.com	11223344	01533252626	Giza-Cairo	client
+
+    //Z-Etman engziad90@gmail.com 11223344 1 u1 giza i3 2 1 i5 1 2 1000 11.969999
+
 
 
 }

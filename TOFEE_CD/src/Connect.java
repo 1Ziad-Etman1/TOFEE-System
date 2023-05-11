@@ -649,29 +649,46 @@ public class Connect {
      *
      * @return the last user id
      */
+//    public String getLastUserId() {
+//        String lastId = "";
+//
+//        try {
+//            // create a SQL statement to retrieve the ID of the last row in the user table
+//            Connection conn = this.connect();
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT id FROM "+table_name+" WHERE id=(SELECT MAX(id))");
+//
+//            // if there is a last ID, retrieve it
+//            if (rs.next()) {
+//                lastId = rs.getString(1);
+//            }
+//
+//            rs.close();
+//            stmt.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return lastId;
+//    }
+
     public String getLastUserId() {
         String lastId = "";
-
         try {
-            // create a SQL statement to retrieve the ID of the last row in the user table
             Connection conn = this.connect();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id FROM "+table_name+" WHERE id=(SELECT MAX(id))");
-
-            // if there is a last ID, retrieve it
+            ResultSet rs = stmt.executeQuery("SELECT id FROM " + table_name + " ORDER BY id DESC LIMIT 1");
             if (rs.next()) {
-                lastId = rs.getString(1);
+                lastId = rs.getString("id");
             }
-
             rs.close();
             stmt.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return lastId;
     }
-
     /**
      * Gets price by id.
      *
