@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -24,10 +25,7 @@ public class Payment_System { // DONE
 		gift_voucher_money = 0;
 		loyalty_points_money = 0;
 		remain_price = price;
-		payWays = new ArrayList<Boolean>(4);
-		for (int i = 0; i < 4; i++) {
-			payWays.set(i, false);
-		}
+		payWays = new ArrayList<Boolean>(Arrays.asList(false, false, false, false));
 	}
 
 	/**
@@ -43,10 +41,8 @@ public class Payment_System { // DONE
 		gift_voucher_money = 0;
 		loyalty_points_money = 0;
 
-		payWays = new ArrayList<Boolean>(4);
-		for (int i = 0; i < 4; i++) {
-			payWays.set(i, false);
-		}
+
+		payWays = new ArrayList<Boolean>(Arrays.asList(false, false, false, false));
 
 	}
 
@@ -62,9 +58,9 @@ public class Payment_System { // DONE
 		if(pw.length() != 4) return false;
 
 		if((pw.charAt(0)!='0' && pw.charAt(0)!='1') ||
-			(pw.charAt(0)!='0' && pw.charAt(0)!='1') ||
-			(pw.charAt(0)!='0' && pw.charAt(0)!='1') ||
-			(pw.charAt(0)!='0' && pw.charAt(0)!='1')) {
+			(pw.charAt(1)!='0' && pw.charAt(1)!='1') ||
+			(pw.charAt(2)!='0' && pw.charAt(2)!='1') ||
+			(pw.charAt(3)!='0' && pw.charAt(3)!='1')) {
 
 				return false;
 		}
