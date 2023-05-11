@@ -244,7 +244,7 @@ public class Connect {
                                 rs.getString("seal_loose") + "\t" +
                                 rs.getFloat("discountPercentage") + "\t" +
                                 rs.getFloat("amountInStores") + "\t" +
-                                rs.getInt("loualPoints") + "\t" +
+                                rs.getInt("loyalPoints") + "\t" +
                                 rs.getString("description")
                 );
             }
@@ -436,7 +436,7 @@ public class Connect {
 
             if (colName.equals("price") || colName.equals("discountPercentage") || colName.equals("amountInStores")) {
                 pstmt.setFloat(1, Float.parseFloat(newVal));
-            } else if (colName.equals("loualPoints")) {
+            } else if (colName.equals("loyalPoints")) {
                 pstmt.setInt(1, Integer.parseInt(newVal));
             } else {
                 pstmt.setString(1, newVal);
@@ -600,7 +600,7 @@ public class Connect {
                                 rs.getString("seal_loose") + "\t" +
                                 rs.getFloat("discountPercentage") + "\t" +
                                 rs.getFloat("amountInStores") + "\t" +
-                                rs.getInt("loualPoints") + "\t" +
+                                rs.getInt("loyalPoints") + "\t" +
                                 rs.getString("description")
                 );
             }
@@ -633,7 +633,7 @@ public class Connect {
                                 rs.getString("seal_loose") + "\t" +
                                 rs.getFloat("discountPercentage") + "\t" +
                                 rs.getFloat("amountInStores") + "\t" +
-                                rs.getInt("loualPoints") + "\t" +
+                                rs.getInt("loyalPoints") + "\t" +
                                 rs.getString("description")
                 );
             }
