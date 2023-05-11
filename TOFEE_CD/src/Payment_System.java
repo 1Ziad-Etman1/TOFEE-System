@@ -89,11 +89,11 @@ public class Payment_System { // DONE
 				"(Note you have to input something like 0011 means 1 if you use the pay method 0 if not)\n" +
 				"your payment methods: "
 		);
-		payways01 = in.next();
+		payways01 = in.nextLine();
 
 		while (!check_valid_payways(payways01)){
 			System.out.println("Wrong input \n Enter your payways: ");
-			payways01 = in.next();
+			payways01 = in.nextLine();
 		}
 
 		if (payways01.charAt(0) == '1'){

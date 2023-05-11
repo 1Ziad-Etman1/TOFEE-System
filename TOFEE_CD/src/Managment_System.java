@@ -74,7 +74,7 @@ public class Managment_System {
 				String ID = "xzx";
 				while (!l.checkMailAndID(ID)){
 					System.out.println("Enter your correct ID please: ");
-					ID = in.next();
+					ID = in.nextLine();
 				}
 				Order o = new Order(ID);
 				o.Interface();
@@ -96,12 +96,12 @@ public class Managment_System {
 				if(c == 1){
 					String key = "";
 					System.out.println("Enter the key word you wanna search with: ");
-					key = in.next();
+					key = in.nextLine();
 					searchItem(key);
 				} else if (c == 2) {
 					String key = "";
 					System.out.println("Enter the key word you wanna search with: ");
-					key = in.next();
+					key = in.nextLine();
 					searchCategory(key);
 				}
 			} else if (choice == 3) {

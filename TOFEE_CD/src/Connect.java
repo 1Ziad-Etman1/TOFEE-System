@@ -582,6 +582,7 @@ public class Connect {
      * @param key the key
      */
     public void search_viewByName(String key){
+        key = '\'' + key + '\'';
         String sql = "SELECT * FROM " + table_name + " WHERE name = " + key + " ;";
 
         try {
@@ -615,7 +616,8 @@ public class Connect {
      * @param key the key
      */
     public void search_viewByCategory(String key){
-        String sql = "SELECT * FROM " + table_name + " WHERE category = " + key + " ;";
+        key = '\'' + key + '\'';
+        String sql = "SELECT * FROM " + table_name + " WHERE categoryName = " + key + " ;";
 
         try {
             Connection conn = this.connect();
@@ -680,12 +682,11 @@ public class Connect {
         float price = 0;
 
         try {
-            // create a SQL statement to retrieve the ID of the last row in the user table
             Connection conn = this.connect();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT price FROM "+table_name+" WHERE id= "+id+" )");
+            id = '\'' + id + '\'';
+            ResultSet rs = stmt.executeQuery("SELECT price FROM " + table_name + " WHERE id = " + id );
 
-            // if there is a last ID, retrieve it
             if (rs.next()) {
                 price = rs.getFloat(1);
             }

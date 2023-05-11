@@ -36,7 +36,7 @@ public class Order {
 		System.out.println("\t\t\tTOFEE-System\n" +
 				"Welcome to order system\n");
 		System.out.println("Enter the address: ");
-		address = in.next();
+		address = in.nextLine();
 		System.out.println("our products\n");
 		show_products();
 
@@ -49,7 +49,7 @@ public class Order {
 		int choice = 0;
 		while (choice != 2){
 			System.out.print("Enter the id of item you want: ");
-			new_id = in.next();
+			new_id = in.nextLine();
 			System.out.print("how much do you want to add? ");
 			new_amount = in.nextFloat();
 			price = price + new_amount * c.getPriceById(new_id);

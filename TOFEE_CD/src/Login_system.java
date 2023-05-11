@@ -22,17 +22,17 @@ public class Login_system {
 		while (true){
 			System.out.println("\t\t\t\tLogin\nWelcome to TOFEE System\n");
 			System.out.println("if you want to clear data and start fill  again write \"clear\"\nPlease Enter your \nUsername: ");
-			userName = in.next();
+			userName = in.nextLine();
 			if (userName == "clear"){
 				return clearData();
 			}
 			System.out.println("Please Enter your \nEmail: ");
-			email = in.next();
+			email = in.nextLine();
 			if (email == "clear"){
 				return clearData();
 			}
 			System.out.println("Password: ");
-			password = in.next();
+			password = in.nextLine();
 			if (password == "clear"){
 				return clearData();
 			}
@@ -151,7 +151,7 @@ public class Login_system {
 		while (!verifyMail()){
 
 			System.out.println("Please Enter your email : ");
-			email = in.next();
+			email = in.nextLine();
 			if(verifyMail()){
 				System.out.println("we will send you otp mail now!");
 				int otpCode = otp.mn(email);
@@ -169,11 +169,11 @@ public class Login_system {
 				//NOW the code is verified and all right
 
 				System.out.println("Enter your new password: ");
-				String newPass = in.next();
+				String newPass = in.nextLine();
 				String ID = "xzx";
 				while (!checkMailAndID(ID)){
 					System.out.println("Enter your correct ID please: ");
-					ID = in.next();
+					ID = in.nextLine();
 				}
 
 				c.updateTable(ID,"password", newPass);
