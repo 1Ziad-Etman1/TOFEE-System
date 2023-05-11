@@ -24,7 +24,7 @@ public class Registeration_System {
 		System.out.println("\t\t\t\tRegistration\n" +
 				"Welcome to TOFEE-System\n" +
 				"Please Enter your name: ");
-		name = in.next();
+		name = in.nextLine();
 
 		System.out.println("Enter your username: ");
 		userName = in.next();
@@ -70,7 +70,7 @@ public class Registeration_System {
 		phoneNum = in.next();
 
 		System.out.println("Enter your address: ");
-		address = in.next();
+		address = in.nextLine();
 
 		id = "u26";
 		Connect c = new Connect("UsersData");
