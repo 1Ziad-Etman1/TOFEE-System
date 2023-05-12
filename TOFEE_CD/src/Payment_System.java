@@ -301,7 +301,7 @@ public class Payment_System { // DONE
 		if (payWays.get(3)){
 			amounts = amounts + ',' +  Float.toString(gift_voucher_money);
 		}
-		amounts = amounts.substring(1, amounts.length()-1);
+		amounts = amounts.substring(1, amounts.length());
 
 		return amounts;
 
