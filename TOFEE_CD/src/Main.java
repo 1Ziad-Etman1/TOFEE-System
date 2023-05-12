@@ -9,13 +9,16 @@ public class Main {
      */
     public static void main(String[] args) {
         Managment_System m = new Managment_System();
-        m.Interface();
+//        m.Interface();
 
 //        Payment_System p = new Payment_System(3);
 //        p.setCash(3);
 //        System.out.println(p.getPayWays().get(0));
 //        System.out.println(p.getPayWays().get(2));
+        ID_Generator d = new ID_Generator();
+        System.out.println(d.current_label_item());
 //        Connect c = new Connect("Items");
+//        c.insertInAuthTable();
 //        c.search_viewByCategory("Gummies");
 //        m.searchCategory("Gummies");
     }
