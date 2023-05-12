@@ -79,8 +79,8 @@ public class Order {
 
 		ID_Generator d = new ID_Generator();
 		Connect c2 = new Connect("orders");
-		c2.insertInOrdersTable(d.next_Label_order(),clientId,address,items_ids,item_amounts,p.getPayWays(),p.getPayAmounts(),price);
-		throw new UnsupportedOperationException();
+		c2.insertInOrdersTable(d.next_Label_order(),clientId,address,items_ids,item_amounts,p.getPayWayss(),p.getPayAmounts(),price);
+//		throw new UnsupportedOperationException();
 	}
 
 	/**

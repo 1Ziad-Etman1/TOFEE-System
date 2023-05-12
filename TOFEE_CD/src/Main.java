@@ -10,6 +10,11 @@ public class Main {
     public static void main(String[] args) {
         Managment_System m = new Managment_System();
         m.Interface();
+
+//        Payment_System p = new Payment_System(3);
+//        p.setCash(3);
+//        System.out.println(p.getPayWays().get(0));
+//        System.out.println(p.getPayWays().get(2));
 //        Connect c = new Connect("Items");
 //        c.search_viewByCategory("Gummies");
 //        m.searchCategory("Gummies");

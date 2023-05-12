@@ -46,6 +46,14 @@ public class Payment_System { // DONE
 
 	}
 
+	public void setPayWays(ArrayList<Boolean> payWays) {
+		this.payWays = payWays;
+	}
+
+	public ArrayList<Boolean> getPayWays() {
+		return payWays;
+	}
+
 	/**
 	 * Check valid payways boolean.
 	 *
@@ -171,7 +179,7 @@ public class Payment_System { // DONE
 	 * @param cashMoney the cash money
 	 */
 	public void setCash(float cashMoney) {
-		if (cashMoney > 0 && cashMoney < remain_price){
+		if (cashMoney > 0 && cashMoney <= remain_price){
 			payWays.set(0,true);
 		}
 		cash_money = cashMoney;
@@ -255,7 +263,7 @@ public class Payment_System { // DONE
 	 *
 	 * @return the string
 	 */
-	public String getPayWays (){
+	public String getPayWayss(){
 		String ways = "";
 		if (payWays.get(0)){
 			ways += "cash,";
