@@ -137,8 +137,10 @@
 -- ('o6', 'c1', '987 Cedar St', 'i15,i16,i17,i18', '2,2,1,3', 'cash,loyaltyPoints,giftVoucher', '10.79,7,6', 23.79),
 -- ('o7', 'c2', '654 Birch St', 'i19,i20', '3,2', 'cash,giftVoucher', '7.57,7', 14.57);
 
-
+-- SELECT * FROM Items ORDER BY DESC ;
+-- SELECT *FROM Items ORDER BY SUBSTR(id FROM 1 FOR 2),CAST(SUBSTR(id FROM 2) AS UNSIGNED);
+-- SELECT * FROM Items ORDER BY SUBSTR(id, 1, 1), CAST(SUBSTR(id, 2) AS INTEGER) DESC;
 SELECT * FROM UsersData;
-SELECT * FROM Categories;
-SELECT * FROM Items;
-SELECT * FROM orders;
+-- SELECT * FROM Categories;
+-- SELECT * FROM Items;
+-- SELECT * FROM orders;

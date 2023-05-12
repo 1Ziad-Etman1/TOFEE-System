@@ -677,7 +677,7 @@ public class Connect {
         try {
             Connection conn = this.connect();
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id FROM " + table_name + " ORDER BY id DESC LIMIT 1");
+            ResultSet rs = stmt.executeQuery("SELECT id FROM " + table_name + " ORDER BY SUBSTR(id, 1, 1), CAST(SUBSTR(id, 2) AS INTEGER) DESC");
             if (rs.next()) {
                 lastId = rs.getString("id");
             }
