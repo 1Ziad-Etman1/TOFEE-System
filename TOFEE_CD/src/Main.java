@@ -8,9 +8,10 @@ public class Main {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        Managment_System m = new Managment_System();
-        m.Interface();
-
+//        Managment_System m = new Managment_System();
+//        m.Interface();
+        OTPMAIL o = new OTPMAIL();
+        System.out.println(o.mn("ahmedelnile44@gmail.com"));
 
     }
 //id	name	username	email	password	phoneNum	address	type
